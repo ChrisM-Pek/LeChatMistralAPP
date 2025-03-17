@@ -1,0 +1,25 @@
+{
+    "name": "LeChatMistralAPP",
+    "version": "1.0.0",
+    "description": "simple app to open LeChat Mistral",
+    "main": "main.js",
+    "scripts": {
+      "start": "electron .",
+      "build": "electron-builder"
+    },
+    "build": {
+      "appId": "com.example.yourapp",
+      "win": {
+        "target": "portable"
+      },
+      "portable": {
+        "artifactName": "YourAppName-${version}.exe"
+      }
+    },
+    "devDependencies": {
+      "electron": "35.0.2",
+      "electron-builder": "^25.1.8"
+    },
+    "author": "ChrisM-Pek"
+  }
+  
