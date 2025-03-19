@@ -1,3 +1,3 @@
-Simple Electron WebBrowser to show Mistral Le chat using electron
+Simple Electron WebBrowser to show Mammouth.ai using electron
 
 *Generated with Le chat
