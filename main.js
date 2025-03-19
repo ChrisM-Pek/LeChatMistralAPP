@@ -331,8 +331,8 @@ function injectResolutionButton() {
             <input type="number" id="custom-height" min="480" max="2160" value="\${defaultHeight}">
           </div>
           <div class="modal-buttons">
-            <button id="cancel-res">Annuler</button>
-            <button id="apply-res">Appliquer</button>
+            <button id="cancel-res">Cancel</button>
+            <button id="apply-res">Apply</button>
           </div>
         </div>
       \`;
@@ -450,15 +450,39 @@ function injectResolutionButton() {
           }
           document.body.removeChild(modal);
         } else {
-          alert('Dimensions invalides ! La largeur doit être entre 640 et 3840 pixels, et la hauteur entre 480 et 2160 pixels.');
+          alert('Invalid dimensions! The width must be between 640 and 3840 pixels, and the height between 480 and 2160 pixels.');
         }
       });
       
-      // Fermer la modale en cliquant en dehors du contenu
-      modal.addEventListener('click', (e) => {
+      // Fermer la modale en cliquant en dehors du contenu, mais pas lors de la sélection de texte
+      let isMouseDown = false;
+      let isDragging = false;
+
+      modal.addEventListener('mousedown', (e) => {
         if (e.target === modal) {
+          isMouseDown = true;
+          isDragging = false;
+        }
+      });
+
+      modal.addEventListener('mousemove', () => {
+        if (isMouseDown) {
+          isDragging = true;
+        }
+      });
+
+      modal.addEventListener('mouseup', (e) => {
+        if (e.target === modal && isMouseDown && !isDragging) {
           document.body.removeChild(modal);
         }
+        isMouseDown = false;
+        isDragging = false;
+      });
+
+      // Pour gérer également le cas où l'utilisateur quitte la fenêtre pendant le glissement
+      document.addEventListener('mouseup', () => {
+        isMouseDown = false;
+        isDragging = false;
       });
       
       // Permettre la soumission par la touche Entrée
