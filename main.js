@@ -12,7 +12,7 @@ function createWindow() {
         icon: path.join(__dirname, 'images', 'icon.png')
     });
 
-    win.loadURL('https://chat.mistral.ai');
+    win.loadURL('https://mammouth.ai');
 
     // Intercepter les tentatives de navigation dans la même fenêtre
     win.webContents.on('will-navigate', (event, url) => {
